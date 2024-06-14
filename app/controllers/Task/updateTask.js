@@ -13,7 +13,7 @@ const updateTask = async function (req, res) {
     try {
         let task = await Task.findById(req.params.id);
         if (!task || task.owner.toString() !== req.user.userId) {
-            return res.status(404).json({ msg: 'Task not found' });
+            return res.status(404).json({ message: 'Task not found' });
         }
 
         if (title) task.title = title;
@@ -24,7 +24,7 @@ const updateTask = async function (req, res) {
         await task.save();
         res.json(task);
     } catch (err) {
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json({ message: 'Server error' });
     }
 }
 

@@ -60,7 +60,8 @@ router.delete("/projects/:id", auth, deleteProject)
  */
 router.post("/tasks", [
     check('title', 'Title is required').not().isEmpty(),
-    check('projectId', 'Project ID is required').not().isEmpty()
+    check('projectId', 'Project ID is required').not().isEmpty(),
+    check('dueDate', 'Due Date is required').not().isEmpty()
 ], auth, createTask)
 
 router.get("/tasks", auth, getAllTasks)

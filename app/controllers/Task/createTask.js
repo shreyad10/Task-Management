@@ -14,14 +14,16 @@ const createTask = async function (req, res) {
     try {
         const project = await Project.findById(projectId);
         if (!project || project.owner.toString() !== req.user.userId) {
-            return res.status(404).json({ msg: 'Project not found' });
+            return res.status(404).json({ message: 'Project not found' });
         }
+
+        const date = new Date(dueDate);
 
         const task = new Task({
             title,
             description,
             status,
-            dueDate,
+            dueDate: date,
             projectId,
             owner: req.user.userId
         });
@@ -29,7 +31,7 @@ const createTask = async function (req, res) {
         await task.save();
         res.status(201).json(task);
     } catch (err) {
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json({ message: 'Server error', err: err.message });
     }
 }
 

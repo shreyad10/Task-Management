@@ -20,7 +20,7 @@ const getAllTasks = async function (req, res) {
             tasks
         });
     } catch (err) {
-        res.status(500).json({ msg: 'Server error' });
+        res.status(500).json({ message: 'Server error' });
     }
 }
 
