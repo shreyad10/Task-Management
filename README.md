@@ -48,18 +48,19 @@ POST /users/register
 2.Log in a user:
 POST /users/login
 
-## All User, projects, tasks are protected by authorisation header: (Need to pass token in each route)
+## All User, projects, tasks are protected by authorisation header: 
+(Need to pass token in each route)
    x-auth-token 
 
 
-User Profile:  
+## User Profile:  
 1.Get the authenticated user's profile:
 GET /users/me
 
 2.Update the authenticated user's profile
 PUT /users/me
 
-Project Management: 
+## Project Management: 
 1.Create a new project:
 POST /projects
 
@@ -75,7 +76,7 @@ PUT /projects/:id
 5.Delete a project by its ID:
 DELETE /projects/:id
 
-Task Management:
+## Task Management:
 1.Create a new task:
 POST /tasks
 
