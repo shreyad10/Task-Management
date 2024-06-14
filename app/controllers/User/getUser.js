@@ -8,7 +8,7 @@ const getUserById = async function (req, res) {
         }
         res.json(user);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 

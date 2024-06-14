@@ -12,7 +12,7 @@ const deleteTask = async function (req, res) {
         await task.remove();
         res.json({ message: 'Task removed' });
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 

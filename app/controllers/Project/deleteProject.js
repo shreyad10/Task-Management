@@ -10,7 +10,7 @@ const deleteProject = async function (req, res) {
 
     res.send({ message: "Project Removed", project });
   } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
+    res.status(500).json({ message: "Somwthing went wrong!", error: err.message });
   }
 };
 

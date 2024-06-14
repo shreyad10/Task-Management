@@ -10,7 +10,7 @@ const getTaskById = async function (req, res) {
         }
         res.json(task);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 

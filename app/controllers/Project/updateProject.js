@@ -10,8 +10,9 @@ const updateProject = async function (req, res) {
     const { name, description } = req.body;
 
     try {
-        let project = await Project.findById(req.params.id);
-        if (!project || project.owner.toString() !== req.user.userId) {
+        let project = await Project.findById(req.params.id).populate("owner");
+
+        if (!project || project.owner.id.toString() !== req.user.userId) {
             return res.status(404).json({ message: 'Project not found' });
         }
 
@@ -21,7 +22,7 @@ const updateProject = async function (req, res) {
         await project.save();
         res.json(project);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 

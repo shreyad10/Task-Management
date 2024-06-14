@@ -31,7 +31,7 @@ const createTask = async function (req, res) {
         await task.save();
         res.status(201).json(task);
     } catch (err) {
-        res.status(500).json({ message: 'Server error', err: err.message });
+        res.status(500).json({ message: 'Somwthing went wrong!', err: err.message });
     }
 }
 

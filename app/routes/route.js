@@ -36,7 +36,7 @@ router.get("/users/me", auth, getUserById)
 
 router.put("/users/me", auth, [
     check('user_name', 'Username is required').optional().not().isEmpty(),
-    check('email', 'Please include a valid email').optional().isEmail()
+    check('email', 'Please include a valid email').optional().not().isEmail()
 ], updateUserProfile)
 
 /**

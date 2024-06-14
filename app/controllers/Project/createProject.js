@@ -19,7 +19,7 @@ const createProject = async function (req, res) {
         await project.save();
         res.status(201).json(project);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 

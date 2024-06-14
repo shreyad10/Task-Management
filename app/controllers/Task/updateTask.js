@@ -24,7 +24,7 @@ const updateTask = async function (req, res) {
         await task.save();
         res.json(task);
     } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
 
