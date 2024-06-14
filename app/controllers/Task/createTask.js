@@ -9,7 +9,7 @@ const createTask = async function (req, res) {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, description, status, dueDate, projectId } = req.body;
+    const { title, description, status, dueDate, projectId, priority } = req.body;
 
     try {
         const project = await Project.findById(projectId);
@@ -17,21 +17,37 @@ const createTask = async function (req, res) {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        const date = new Date(dueDate);
+        const taskDueDate = new Date(dueDate);
+
+        if (isNaN(taskDueDate.getTime())) {
+            return res.status(400).json({ message: 'Invalid due date format' });
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (taskDueDate < today) {
+            return res.status(400).json({ message: 'Due date cannot be in the past' });
+        }
+
+        if (priority && !['low', 'medium', 'high'].includes(priority.toLowerCase())) {
+            return res.status(400).json({ message: 'Invalid priority value' });
+        }
 
         const task = new Task({
             title,
             description,
             status,
-            dueDate: date,
+            dueDate: taskDueDate,
             projectId,
-            owner: req.user.userId
+            owner: req.user.userId,
+            priority: priority ? priority.toLowerCase() : 'medium' 
         });
 
         await task.save();
         res.status(201).json(task);
     } catch (err) {
-        res.status(500).json({ message: 'Somwthing went wrong!', err: err.message });
+        res.status(500).json({ message: 'Something went wrong!', error: err.message });
     }
 }
 

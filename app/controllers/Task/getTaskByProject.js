@@ -1,12 +1,17 @@
 
 const Task = require("../../models/Task");
 const Project = require("../../models/Project");
+const { isValidId } = require("../../utils/validator");
 
 const getTaskByProject = async function (req, res) {
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
+
+    if(!isValidId(req.params.projectId)){
+        return res.status(404).json({ message: 'Invalid projects ID' });
+    }
 
     const project = await Project.findById(req.params.projectId);
     if (!project || project.owner.toString() !== req.user.userId) {

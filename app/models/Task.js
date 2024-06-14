@@ -13,7 +13,12 @@ const TaskSchema = new Schema(
         dueDate: { type: Date, required: true },
         projectId: { type: ObjectId, ref: "Project", required: true },
         owner: { type: ObjectId, ref: "User", required: true },
-
+        priority : {
+            type: String,
+            required: true,
+            enum: ['low', 'medium', 'high'],
+            default: "medium",
+        },
     },
     {
         timestamps: true,
