@@ -12,7 +12,8 @@ const createTask = async function (req, res) {
     const { title, description, status, dueDate, projectId, priority } = req.body;
 
     try {
-        const project = await Project.findById(projectId);
+        const project = await Project.findOne({_id: projectId});
+        // console.log(req.user, project)
         if (!project || project.owner.toString() !== req.user.userId) {
             return res.status(404).json({ message: 'Project not found' });
         }
@@ -45,7 +46,7 @@ const createTask = async function (req, res) {
         });
 
         await task.save();
-        res.status(201).json(task);
+        res.status(201).json({task, message: "Task Added Successfully!"});
     } catch (err) {
         res.status(500).json({ message: 'Something went wrong!', error: err.message });
     }

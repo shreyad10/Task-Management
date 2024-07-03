@@ -62,14 +62,14 @@ router.post("/tasks", [
     check('title', 'Title is required').not().isEmpty(),
     check('projectId', 'Project ID is required').not().isEmpty(),
     check('dueDate', 'Due Date is required').not().isEmpty()
-], auth, createTask)
+],auth,  createTask)
 
-router.get("/tasks", auth, getAllTasks)
+router.get("/tasks",auth, getAllTasks)
 
-router.get("/tasks/:id", auth, getTaskById)
+router.get("/tasks/:id",  getTaskById)
 
-router.put("/tasks/:id", auth, [check('title', 'Title is required').optional().not().isEmpty(),
-check('status', 'Status must be one of: to-do, in-progress, done').optional().isIn(['to-do', 'in-progress', 'done'])], updateTask)
+router.put("/tasks/:id", [check('title', 'Title is required').optional().not().isEmpty(),
+check('status', 'Status must be one of: to-do, in-progress, done').optional().isIn(['to-do', 'in-progress', 'done'])], auth, updateTask)
 
 router.delete("/tasks/:id", auth, deleteTask)
 
