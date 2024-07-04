@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const route = require("./app/routes/route.js");
-let cors = require("cors");
+const cors = require("cors");
 dotenv.config();
 
 // create express app
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Enable CORS for all routes
-app.options('*', cors());
+app.use(cors());
 
 // Connecting to the database
 require("./app/config/connection.js");
