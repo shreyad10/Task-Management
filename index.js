@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 require("./app/config/connection.js");
 
 app.use(route);
-app.use("/", (req, res)=> {
-  res.send("Hello world")
-})
+// app.use("/", (req, res)=> {
+//   res.send("Hello world")
+// })
 
 // listen for requests
 app.listen(process.env.PORT, () => {
