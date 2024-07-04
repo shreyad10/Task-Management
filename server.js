@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const route = require("../app/routes/route.js");
+const route = require("./app/routes/route.js");
 let cors = require("cors");
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Connecting to the database
-require("../app/config/connection.js");
+require("./app/config/connection.js");
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
