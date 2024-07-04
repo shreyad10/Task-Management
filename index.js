@@ -15,15 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Enable CORS for all routes
-// app.use(cors());
-const corsOptions = {
-  origin: '*', // Replace with your frontend URL
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  allowedHeaders: 'Content-Type,Authorization',
-};
-
-app.use(cors(corsOptions));
-
+app.options('*', cors());
 
 // Connecting to the database
 require("./app/config/connection.js");
