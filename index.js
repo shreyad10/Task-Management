@@ -7,6 +7,8 @@ dotenv.config();
 
 // create express app
 const app = express();
+// Enable CORS for all routes
+app.use(cors());
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,12 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// Enable CORS for all routes
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
 
 // Connecting to the database
 require("./app/config/connection.js");
