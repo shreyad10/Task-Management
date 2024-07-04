@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const route = require("./app/routes/route.js");
-const cors = require("cors");
+let cors = require("cors");
 dotenv.config();
 
 // create express app
@@ -13,24 +13,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
+app.use(cors());
 
 // Connecting to the database
 require("./app/config/connection.js");
 
+app.use(function (req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type,Authorization"
+  );
+
+  next();
+});
+
 app.use(route);
-// app.use("/", (req, res)=> {
-//   res.send("Hello world")
-// })
-
-// Enable CORS for all routes
-app.use(cors( {
-  'Access-Control-Allow-Methods': 'GET,POST',
-  'Access-Control-Allow-Origin': '',
-  'Access-Control-Allow-Credentials': 'true',
-  'Access-Control-Allow-Headers': '',
-  'Access-Control-Expose-Headers': '*',
-  }));
-
 
 // listen for requests
 app.listen(process.env.PORT, () => {
