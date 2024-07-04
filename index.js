@@ -14,13 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 
-// Enable CORS for all routes
-app.use(cors({
-  origin: '*', // Replace with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
 // Connecting to the database
 require("./app/config/connection.js");
 
@@ -28,6 +21,14 @@ app.use(route);
 app.use("/", (req, res)=> {
   res.send("Hello world")
 })
+
+// Enable CORS for all routes
+app.use(cors({
+  origin: '*', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 
 // listen for requests
 app.listen(process.env.PORT, () => {
