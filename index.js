@@ -18,9 +18,9 @@ app.use(bodyParser.json());
 require("./app/config/connection.js");
 
 app.use(route);
-app.use("/", (req, res)=> {
-  res.send("Hello world")
-})
+// app.use("/", (req, res)=> {
+//   res.send("Hello world")
+// })
 
 // Enable CORS for all routes
 app.use(cors({
