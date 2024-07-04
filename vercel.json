@@ -1,31 +1,16 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-My-Custom-Header",
-          "value": "Hello, World!"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=86400, stale-while-revalidate"
-        }
-      ]
-    }
-  ]
-}
 
+  {
+    "version": 2,
+    "builds": [
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}
