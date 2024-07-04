@@ -37,6 +37,9 @@ app.use(function (req, res, next) {
 });
 
 app.use(route);
+app.use("/", (req, res)=> {
+  res.send("Hello world")
+})
 
 // listen for requests
 app.listen(process.env.PORT, () => {
