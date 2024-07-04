@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
-// app.use(cors());
 
 // Connecting to the database
 require("./app/config/connection.js");
@@ -35,6 +34,7 @@ app.use(function (req, res, next) {
 
   next();
 });
+app.use(cors());
 
 app.use(route);
 
