@@ -9,9 +9,10 @@ const deleteTask = async function (req, res) {
             return res.status(404).json({ message: 'Task not found' });
         }
 
-        await task.remove();
+        await task.deleteOne();
         res.json({ message: 'Task removed' });
     } catch (err) {
+        console.log("ERROR: ", err)
         res.status(500).json({ message: 'Somwthing went wrong!' });
     }
 }
